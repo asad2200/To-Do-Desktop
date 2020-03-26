@@ -518,6 +518,8 @@ public class Controller {
     public void updateDesignWork(String clientName,String GivenDate,String DeliverDate,String price,String description,AddDesign dlg,String id){
         try {
             st.executeUpdate("update designworks set clientname='"+clientName+"',givendate='"+GivenDate+"',deliverdate='"+DeliverDate+"',price='"+price+"',description='"+description+"' where id="+id);
+            String task=clientName+","+description;
+            st.executeUpdate("update dailytask set task='"+task+"',taskdate='"+DeliverDate+"' where id2='"+id+"'");
             dlg.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(dlg,"Detail Not Added","Not Sucessfull!",0);
